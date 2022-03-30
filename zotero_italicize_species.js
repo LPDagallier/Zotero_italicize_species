@@ -12,7 +12,7 @@ for (let oldValue of toModify){
 
 // define the regex patterns
 var regExTotal = new RegExp("(\\b"+oldValue+"\\b)(?!<\/i>)","g");
-var regExRefine = new RegExp("<\/i> <i>") // regexp to remove because useless
+var regExClean = new RegExp("<\/i> <i>");
 
 var fieldID = Zotero.ItemFields.getID(fieldName);
 var s = new Zotero.Search();
@@ -36,7 +36,7 @@ if (tempTitle.match(regExTotal)){
     numberOfItemsModified++ // adds 1 for each match modified
 }
 		var newValue = tempTitle.replace(regExTotal, textConcat);
-		newValue = newValue.replace(regExRefine, " ");
+		newValue = newValue.replace(regExClean, " "); // cleaning step
         item.setField(mappedFieldID ? mappedFieldID : fieldID, newValue);
         await item.save();
     }
