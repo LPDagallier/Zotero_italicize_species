@@ -4,6 +4,7 @@ TO DO:
 - 'see also' section
 - clean the script
 - add comments in the script
+- add warning about the numbers returned
 
 # Zotero_italicize_species
 This repository present a procedure to automatically italicize the species names in the titles of your documents in the Zotero library.
