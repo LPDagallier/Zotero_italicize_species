@@ -1,3 +1,10 @@
+TO DO:
+- add more explanations (?)
+- 'note for zotfile users'section
+- 'see also' section
+- clean the script
+- add comments in the script
+
 # Zotero_italicize_species
 This repository present a procedure to automatically italicize the species names in the titles of your documents in the Zotero library.
 
@@ -17,7 +24,7 @@ So here is a script for automatically add the \<i> html tags around a list of us
 - Backup your Zotero database: https://www.zotero.org/support/zotero_data
 
 - Open the [zotero_italicize_species.js](./zotero_italicize_species.js) script in any text or script editor.
-- Insert in the `toModify` variable the list of text strings you want to put in italic. Each string is between 2 qutation marks ("), seprarated by a comma (,). **Important**: in the text strings, you should separate the genus and the species, e.g. `var toModify = ["Quercus", "pubescens"];` and **not**  `var toModify = ["Quercus pubescens"];` (see the explanation below).
+- In the `toModify` variable, insert the list of text strings you want to have in italic. Each string is enclosed by quotation marks ("), seprarated by a comma (,). **Important**: in the text strings, you have to separate the genus and the species strings, e.g. `var toModify = ["Quercus", "pubescens", "Homo", "sapiens"];` and **not**  `var toModify = ["Quercus pubescens", "Homo sapiens"];` (see the explanation below).
 - Select all the script and copy it.
 - Open Zotero, in the menu, go to Tools > Developper > Run JavaScript.
 - Paste the script into the code box of the Run JavaScript window, and tick the 'Run as async function' box.
@@ -27,9 +34,11 @@ That's it! Enjoy the time you saved from manually editing all the titles ;)
 
 ## Explanations
 
-In the [zotero_italicize_species.js](./zotero_italicize_species.js) script, all the text strings to put in italic are contained in the `toModify` variable. Insert here all the 
+The `toModify` variable has to contain the text strings separated. Indeed, if you keep the genus and species names attached, it will possibly add many times to the same string the italic HTML tag. Consider the case where we put `var toModify = ["Quercus pubescens", "Quercus"];`, because we have one document specifically about *Quercus pubescens* and a 2nd document which is a taxonomic revision of the whole genus. In the first document, the title will end up with: \<i>\<i>Quercus\<i/> pubescens\<i/>, displayed as Quercus *pubescens*. Whereas if we have `var toModify = ["Quercus", "pubescens"];`, the title of first document will be \<i>Quercus\<i/> \<i>pubescens\<i/>. An extra step of cleaning in the script removes all the "\<i/> \<i>" patterns (line 39), which ends up like that: \<i>Quercus pubescens\<i/>, that is *Quercus pubescens*.
+ 
 
 ## Note for Zotfile users
 wildcard for renaming the files
 
 ## See also:
+List of scripts that inspired/ other script that would do the same but differently.
