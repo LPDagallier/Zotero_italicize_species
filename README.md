@@ -2,9 +2,7 @@ TO DO:
 - add more explanations (?)
 - 'note for zotfile users'section
 - 'see also' section
-- clean the script
 - add comments in the script
-- add warning about the numbers returned
 
 # Zotero_italicize_species
 This repository present a procedure to automatically italicize the species names in the titles of your documents in the Zotero library.
@@ -35,7 +33,7 @@ That's it! Enjoy the time you saved from manually editing all the titles ;)
 
 ## Explanations
 
-The `toModify` variable has to contain the text strings separated. Indeed, if you keep the genus and species names attached, it will possibly add many times to the same string the italic HTML tag. Consider the case where we put `var toModify = ["Quercus pubescens", "Quercus"];`, because we have one document specifically about *Quercus pubescens* and a 2nd document which is a taxonomic revision of the whole genus. In the first document, the title will end up with: \<i>\<i>Quercus\<i/> pubescens\<i/>, displayed as Quercus *pubescens*. Whereas if we have `var toModify = ["Quercus", "pubescens"];`, the title of first document will be \<i>Quercus\<i/> \<i>pubescens\<i/>. An extra step of cleaning in the script removes all the "\<i/> \<i>" patterns (line 39), which ends up like that: \<i>Quercus pubescens\<i/>, that is *Quercus pubescens*.
+The `toModify` variable has to contain the text strings separated. Indeed, if you keep the genus and species names attached, it will possibly add many times to the same string the italic HTML tag. Consider the case where we put `var toModify = ["Quercus pubescens", "Quercus"];`, because we have one document specifically about *Quercus pubescens* and a 2nd document which is a taxonomic revision of the whole genus. In the first document, the title will end up with: \<i>\<i>Quercus\<i/> pubescens\<i/>, displayed as Quercus *pubescens*. Whereas if we have `var toModify = ["Quercus", "pubescens"];`, the title of first document will be \<i>Quercus\<i/> \<i>pubescens\<i/>. An extra step of cleaning in the script removes all the "\<i/> \<i>" patterns (line 36), which ends up like that: \<i>Quercus pubescens\<i/>, that is *Quercus pubescens*.
  
 
 ## Note for Zotfile users
