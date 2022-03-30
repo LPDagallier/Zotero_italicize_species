@@ -31,9 +31,8 @@ await Zotero.DB.executeTransaction(async function () {
 		var pre = "<i>"
 		var post = "</i>"
 		var textConcat = pre.concat(oldValue, post)
-//		regExTotal = "Caca"
 if (tempTitle.match(regExTotal)){
-    numberOfItemsModified++ // adds 1 for each match modified
+    numberOfItemsModified++ // adds 1 for every match modified
 }
 		var newValue = tempTitle.replace(regExTotal, textConcat);
 		newValue = newValue.replace(regExClean, " "); // cleaning step
