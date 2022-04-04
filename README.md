@@ -20,10 +20,10 @@ So here is a script for automatically add the \<i> html tags around a list of us
 
 ## The step-by-step procedure
 
-- Backup your Zotero database: https://www.zotero.org/support/zotero_data
-
-- Open the [zotero_italicize_species.js](./zotero_italicize_species.js) script in any text or script editor.
-- In the `toModify` variable, insert the list of text strings you want to have in italic. Each string is enclosed by quotation marks ("), seprarated by a comma (,). **Important**: in the text strings, you have to separate the genus and the species strings, e.g. `var toModify = ["Quercus", "pubescens", "Homo", "sapiens"];` and **not**  `var toModify = ["Quercus pubescens", "Homo sapiens"];` (see the explanation below).
+- Backup your Zotero data (just in case; it's pretty simple, see [here](https://www.zotero.org/support/zotero_data#backing_up_your_zotero_data) how to do that)
+- Open the [zotero_italicize_species.js](./zotero_italicize_species.js) script in any text or script editor (Gedit, Notepad).  
+- In the `toModify` variable, insert the list of text strings you want to have in italic. Each string is enclosed by quotation marks ("), seprarated by a comma (,).  
+**Important**: in the text strings, you have to separate the genus and the species strings, e.g. `var toModify = ["Quercus", "pubescens", "Homo", "sapiens"];` and **not**  `var toModify = ["Quercus pubescens", "Homo sapiens"];` (see the explanation below).
 - Select all the script and copy it.
 - Open Zotero, in the menu, go to Tools > Developper > Run JavaScript.
 - Paste the script into the code box of the Run JavaScript window, and tick the 'Run as async function' box.
