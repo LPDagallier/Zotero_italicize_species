@@ -1,6 +1,5 @@
 TO DO:
 - add more explanations (?)
-- 'note for zotfile users'section
 - 'see also' section
 - add comments in the script
 
@@ -47,9 +46,9 @@ To get rid of the tags in the filename with Zotfile, there is a trick. You first
 - Go to Edit > Preferences > Advanced > General
 - Go to Config Editor > I accept the risk!
 - Change the `extensions.zotfile.wildcards.user` value to `{"1": {"field": "title", "operations":[{"function":"replace","regex": "(\\<.*\\>\\b)|(\\b\\<.*\\>)", "replacement": ""}]}}`  
-You have now defined the new wildcard "%1" for Zotfile file renaming.
+You have now defined the new wildcard `%1` for Zotfile file renaming.
 - Now go to Tools > ZotFile Preferences > Renaming Rules
-- Use %1 instead of %t for renaming the title, e.g. {%a} - {%y} - {%1} will rename the files like "Author - YEAR - Title" with the title removed from any HTML tag.
+- Use `%1` wildcard instead of `%t` wildcard for renaming the title, e.g. `{%a} - {%y} - {%1}` will rename the files like "Author - YEAR - Title" with the title removed from any HTML tag.
 
 
 ## See also:
