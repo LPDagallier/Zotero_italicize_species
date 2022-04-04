@@ -32,22 +32,25 @@ So here is a script for automatically add the \<i> html tags around a list of us
 That's it! Enjoy the time you saved from manually editing all the titles ;)
 
 ## Explanations
+The script will go through every string in the `toModify` variable with regular expression to add HTML tags around the string.
 
 The `toModify` variable has to contain every single text string separated from each other.  
-Depending on the documents you have in your database, genus and species names can occur in different ways. In some titles you will have only the genus name, e.g. _Quercus_, and in other titles you will have both genus and specific epithet, e.g. _Quercus pubescens_. If your `toModify` variable only contains genus names (`var toModify = ["Quercus"];`), the specific epithet will not be italicized (ending up with "_Quercus_ pubescens"); if it only contains the genus + species name (`var toModify = ["Quercus pubescens"];`), then all the occurrences of "Quercus pubescens" will be italicized, but not the occurrences of "Quercus" alone; and if it contains both (`var toModify = ["Quercus pubescens", "Quercus"];`), then all the "Quercus" in the occurrences of "Quercus pubescens" will be de italicized 2 times (2 HTML tags: \<i>\<i>Quercus\<i/> pubescens\<i/>), which will "cancel" the italic formatting around the genus name (Quercus _pubescens_).
- 
-Indeed, if you keep the genus and species names attached, it will possibly add many times to the same string the italic HTML tag. Consider the case where we put `var toModify = ["Quercus pubescens", "Quercus"];`, because we have one document specifically about *Quercus pubescens* and a 2nd document which is a taxonomic revision of the whole genus. In the first document, the title will end up with: \<i>\<i>Quercus\<i/> pubescens\<i/>, displayed as Quercus *pubescens*. Whereas if we have `var toModify = ["Quercus", "pubescens"];`, the title of first document will be \<i>Quercus\<i/> \<i>pubescens\<i/>. An extra step of cleaning in the script removes all the "\<i/> \<i>" patterns (line 36), which ends up like that: \<i>Quercus pubescens\<i/>, that is *Quercus pubescens*.
- 
+Depending on the documents you have in your database, genus and species names can occur in different ways. In some titles you will have only the genus name, e.g. _Quercus_, and in other titles you will have both genus and specific epithet, e.g. _Quercus pubescens_. If your `toModify` variable only contains genus names (`var toModify = ["Quercus"];`), the specific epithet will not be italicized (ending up with "_Quercus_ pubescens"); if it only contains the genus + species name (`var toModify = ["Quercus pubescens"];`), then all the occurrences of "Quercus pubescens" will be italicized, but not the occurrences of "Quercus" alone; and if it contains both (`var toModify = ["Quercus pubescens", "Quercus"];`), then all the "Quercus" in the occurrences of "Quercus pubescens" will be de italicized 2 times (2 HTML tags: \<i>\<i>Quercus\<i/> pubescens\<i/>), which will "cancel" the italic formatting around the genus name (ending up with "Quercus _pubescens_"). That is why the `toModify` variable has to contain genus and species names separated (`var toModify = ["Quercus", "pubescens"];`). Note that this will add a HTML tag around each string (\<i>Quercus\<i/> \<i>pubescens\<i/>), which might seem a bit messed up. That is why the script contains an extra step of cleaning (see line 36) that removes all the "\<i/> \<i>" patterns (thus transforming  \<i>Quercus\<i/> \<i>pubescens\<i/> into \<i>Quercus pubescens\<i/>, that is _Quercus pubescens_).
 
-## File renaming
+## PDF file renaming
 
 If you use the function _Rename File from Parent Metadata_ (default Zotero renaming function), Zotero will automatically not include the HTML tag in the .pdf file names.
 
-However, if you are using the Zotfile extension for renaming, it will include the HTML tag.
+However, if you are using the [Zotfile](http://zotfile.com/) extension for renaming, it will include the HTML tags in the file name.  
 
+To get rid of the tags in the filename with Zotfile, there is a trick. You first have to add a [user defined wildcard](http://zotfile.com/index.html#user-defined-wildcards) for the title:
+- Go to Edit > Preferences > Advanced > General
+- Go to Config Editor > I accept the risk!
+- Change the `extensions.zotfile.wildcards.user` value to `{"1": {"field": "title", "operations":[{"function":"replace","regex": "(\\<.*\\>\\b)|(\\b\\<.*\\>)", "replacement": ""}]}}`  
+You have now defined the new wildcard "%1" for Zotfile file renaming.
+- Now go to Tools > ZotFile Preferences > Renaming Rules
+- Use %1 instead of %t for renaming the title, e.g. {%a} - {%y} - {%1} will rename the files like "Author - YEAR - Title" with the title removed from any HTML tag.
 
-Note for Zotfile users
-wildcard for renaming the files
 
 ## See also:
 List of scripts that inspired/ other script that would do the same but differently.
