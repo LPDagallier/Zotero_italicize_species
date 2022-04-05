@@ -52,5 +52,5 @@ You have now defined the new wildcard `%1` for Zotfile file renaming.
 
 ## Ressources
 - https://www.zotero.org/support/dev/client_coding/javascript_api#batch_editing
-- Note that this could also be probably achieved in R using Zotero API (https://github.com/mbojan/zoterro, https://github.com/giocomai/zoteror)
+- Note that this could also be probably achieved in R using Zotero API (see e.g. https://github.com/mbojan/zoterro, https://github.com/giocomai/zoteror), although no ready-to-use function for modifying existing items has been implemented yet 
 - See also [Mazospega](https://github.com/IdoBar/Mazospega) that also intends to italicize species names in Zotero, but in a different way (with Python and interface).
