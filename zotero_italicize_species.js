@@ -1,7 +1,8 @@
 var fieldName = "title";
-var toModify = ["Uvariopsis", "vanderystii"];
+var toModify = ["Annona", "Uva", "Uvaria", "Uvariodendron", "Uvariopsis", "Mischogyne", "Asteranthe", "Uvariastrum", "Hexalobus", "Isolona", "Monodora", "Lukea", "Greenwayodendron", "Monanthotaxis", "Guatteria", "Dennettia", "Hydrocharis", "vanderystii", "Meriania", "Melastoma", "Salpinga", "Macrocentrum", "Graffenrieda", "Axinea", "Adelobotrys", "Memecylon", "Huberantha", "Polyalthiopsis", "H. floribunda", "H. luensis", "Winitia", "Stelechocarpus", "Sageraea", "Diclinanona", "Anthyllis", "apennina", "dicaprio", "Cremastosperma", "Diabelia", "submontana", "aequatorialis", "Phytelephas", "angustifolium", "Croton", "menyharthii", "Pan", "troglodytes", "schweinfurthii", "Cryptocercus", "Hedyosmum", "Gladiolus", "Lapeirousia", "Ophrys", "Pseuduvariana", "mulgravea", "Coccinia", "Criniger", "Acridocarpus", "Brachylophon", "Guibourtia", "Atheris", "Lupangus", "Loxodonta", "cyclotis", "anisatum", "africana cyclotis", "Gorilla gorilla gorilla", "Mandrillus sphinx", "Crocidura", "poensis", "Hylomyscus", "Chiromantis", "rufescens", "Rhampholeon", "platyceps", "Dasymaschalon", "Friesodielsia", "Grammomys", "Silene", "Distemonanthus", "benthamianus", "Memecylon", "Pogostemon", "Anaxagorea", "Polyalthia", "Monoon", "Microlicia", "Amborella", "Sanrafaelia", "rufonammari", "Goniothalamus", "Schisandra", "Azolla", "Rhizosperma", "Schisandra", "Sphaerostema", "cherimola", "Pilosocereus", "Raphia", "Friesodielsia", "Salvia", "Lachemilla", "Nicotiana", "Xylopia", "Cedrela", "odorata", "Desmopsis", "Stenanona", "Berlinia", "Solanum", "Storthocalyx", "Afrothismia", "Parkia", "Costus", "Artabotrys", "biglobosa", "Afzelia", "africana", "quanzensis", "Pilea", "nguruensis", "Polyceratocarpus", "Meiogyne", "Fitzalania", "Encephalartos", "Annickia", "Toussaintia", "Mwasumbia", "Ceiba", "pentandra", "mirabile", "Praomys", "jacksoni", "Terminalia", "superba", "Laccosperma", "Goniothalamus", "Bleda", "Tetrastemma", "Hypericum", "dioica", "Brieya", "Piptostigma", "Sabal", "Saintpaulia", "Sirdavidia", "Andropadus", "Begonia", "Tibouchina"];
 var numberOfItemsFound = 0;
 var numberOfMatchesModified = 0;
+var listNotFound = "";
 
 for (let oldValue of toModify){
 
@@ -14,7 +15,7 @@ var s = new Zotero.Search();
 s.addCondition(fieldName, 'contains', oldValue);
 var ids = await s.search();
 if (!ids.length) {
-    return "No items found";
+    listNotFound = listNotFound.concat(oldValue, ", ")
 }
 numberOfItemsFound = ids.length+numberOfItemsFound //counts the number of items found (some are counted more than once)
 
@@ -39,4 +40,4 @@ await Zotero.DB.executeTransaction(async function () {
     }
 });	
 }
-return numberOfItemsFound + " item(s) found with at least one of the elements \"" + toModify + "\" in the " + fieldName + " (some items might be counted several times); " + numberOfMatchesModified + " match(es) modified."
+return numberOfItemsFound + " item(s) found with at least one of the elements in the list provided in the " + fieldName + " (some items might be counted several times); " + numberOfMatchesModified + " match(es) modified. \n" + "No items found for " + listNotFound;
