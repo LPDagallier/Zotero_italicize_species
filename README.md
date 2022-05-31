@@ -1,4 +1,4 @@
-# Italicize genus and species names in Zotero
+# :sparkles: Italicize genus and species names in Zotero
 :sparkles: Here is a script to automatically _italicize_ the species names (or any other word) in the titles of your documents in the Zotero library. :sparkles:
 
 ## Introduction
