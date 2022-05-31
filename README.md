@@ -1,11 +1,12 @@
 # Italicize genus and species names in Zotero
-This repository present a procedure to automatically italicize the species names in the titles of your documents in the Zotero library.
+:sparkles: Here is a script to automatically _italicize_ the species names (or any other word) in the titles of your documents in the Zotero library. :sparkles:
 
 ## Introduction
 [Zotero](https://www.zotero.org/) is a very useful and powerful tool for managing bibliography.
 However, when the titles of the documents contain a genus or a species name, many of us struggle because:
 - the nomenclature standards require that genus and species to be written in italic
-- depending on how the document is imported, the genus or species name is rarely in italic
+- depending on how the document is imported, the genus and/or species name are rarely already in italic
+- it's boring and fastidious to go through the references section of a documents to manually italicize all the genus and species names 
 
 The way Zotero manages the [rich text formating](https://www.zotero.org/support/kb/rich_text_bibliography) is with HTML tags. So to italicize a part of the title, it needs to be enclosed by the following HTML tags: **\<i>** Genus species  **\<i/>**. So one solution is to go across all the references items in our database and add manually theses tags in the titles, but this is long and tedious.
 
